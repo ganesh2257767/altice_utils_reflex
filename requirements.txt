@@ -1,0 +1,7 @@
+reflex==0.6.3
+
+SQLAlchemy~=2.0.36
+alembic~=1.13.3
+sqlmodel~=0.0.22
+bcrypt~=4.2.0
+psycopg2~=2.9.10

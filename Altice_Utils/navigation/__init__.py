@@ -1,0 +1,3 @@
+from .routes import *
+
+__all__ = ['HOME_ROUTE', 'LOGIN_ROUTE', 'CONTACT_ROUTE', 'REGISTER_ROUTE', 'CONTACT_ENTRIES_ROUTE']
