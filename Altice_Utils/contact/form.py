@@ -1,5 +1,9 @@
 import reflex as rx
+
 from . import ContactState
+from .. import navigation
+from ..login import LoginState
+
 
 def contact_form() -> rx.Component:
     return rx.card(
@@ -32,6 +36,8 @@ def contact_form() -> rx.Component:
                             type="text",
                             size="3",
                             width="100%",
+                            value=f"{LoginState.current_user.first_name}",
+                            read_only=True
                         ),
                         spacing="2",
                         width="100%",
@@ -50,6 +56,8 @@ def contact_form() -> rx.Component:
                             type="text",
                             size="3",
                             width="100%",
+                            value=f"{LoginState.current_user.last_name}",
+                            read_only=True
                         ),
                         spacing="2",
                         width="100%",
@@ -69,6 +77,9 @@ def contact_form() -> rx.Component:
                         type="email",
                         size="3",
                         width="100%",
+                        name="created_by",
+                        value=f"{LoginState.current_user.email}",
+                        read_only=True
                     ),
                     spacing="2",
                     width="100%",
@@ -89,7 +100,8 @@ def contact_form() -> rx.Component:
                         size="3",
                         width="100%",
                         height="100%",
-                        resize="vertical"
+                        resize="vertical",
+                        name="message"
                     ),
                     spacing="2",
                     width="100%",
@@ -99,6 +111,14 @@ def contact_form() -> rx.Component:
                 width="100%",
             ),
             reset_on_submit=True,
+            on_submit=ContactState.handle_form_submit
+        ),
+        rx.cond(
+            LoginState.current_user.role == 'ADMIN',
+            rx.center(
+                rx.link("Check Messages", href=navigation.CONTACT_ENTRIES_ROUTE),
+                padding="2em",
+            ),
         ),
         max_width="28em",
         size="4",

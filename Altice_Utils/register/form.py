@@ -159,6 +159,25 @@ def register_form() -> rx.Component:
                     spacing="2",
                     width="100%",
                 ),
+                rx.vstack(
+                    rx.text(
+                        "Role",
+                        size="3",
+                        weight="medium",
+                        text_align="left",
+                        width="100%",
+                    ),
+                    rx.select(
+                        ["ADMIN", "USER"],
+                        name="role",
+                        width="50%",
+                        size="3",
+                        required=True
+                    ),
+                    justify="start",
+                    spacing="2",
+                    width="100%",
+                ),
                 rx.button(
                     "Register",
                     size="3",

@@ -2,11 +2,10 @@ import reflex as rx
 from .navbar import navbar
 
 
-def base_page(heading, *children) -> rx.Component:
+def base_page(*children) -> rx.Component:
     return rx.fragment(
     navbar(),
-        rx.center(
-            rx.heading(heading, size="9"),
+        rx.box(
             padding="20px"
         ),
         rx.vstack(

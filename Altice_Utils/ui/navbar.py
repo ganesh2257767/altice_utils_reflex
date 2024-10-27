@@ -1,7 +1,7 @@
 import reflex as rx
 
-from .. import navigation
 from ..login import LoginState
+from .. import navigation
 
 
 def navbar_link(text: str, url: str) -> rx.Component:
@@ -27,7 +27,7 @@ def navbar() -> rx.Component:
                 rx.cond(
                     LoginState.is_authenticated,
                     rx.hstack(
-                        navbar_link("FQDN", "/#"),
+                        navbar_link("FQDN", navigation.FQDN_ROUTE),
                         navbar_link("Check Feasibility", "/#"),
                         navbar_link("Netwin Helper", "/#"),
                         navbar_link("Contact", navigation.CONTACT_ROUTE),

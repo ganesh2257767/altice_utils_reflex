@@ -3,10 +3,11 @@ from ..register import UserModel
 import bcrypt
 from sqlalchemy import select
 from .. import navigation
+from sqlalchemy.exc import NoResultFound
 
 class LoginState(rx.State):
     form_data: dict = {}
-    user: UserModel | None  = None
+    current_user: UserModel | None  = None
 
     def logout(self):
         self.reset()
@@ -14,7 +15,7 @@ class LoginState(rx.State):
 
     @rx.var
     def is_authenticated(self):
-        return self.user is not None
+        return self.current_user is not None
 
     def check_login(self):
         if not self.is_authenticated:
@@ -25,14 +26,15 @@ class LoginState(rx.State):
         print(form_data)
         with rx.session() as session:
             statement = select(UserModel).where(UserModel.email == self.form_data['email'])
-            user = session.exec(statement).one()[0]
-            if not user:
+            try:
+                user = session.exec(statement).one()[0]
+            except NoResultFound as e:
                 yield rx.toast.error("Invalid credentials.", position="bottom-center")
                 return
-            if not bcrypt.checkpw(self.form_data['password'].encode("utf-8"), user.password.encode("utf-8")):
-                yield rx.toast.error("Invalid credentials.", position="bottom-center")
-                return
+            else:
+                if not bcrypt.checkpw(self.form_data['password'].encode("utf-8"), user.password.encode("utf-8")):
+                    yield rx.toast.error("Invalid credentials.", position="bottom-center")
+                    return
 
-            self.user = user
-
+            self.current_user = user
             yield rx.redirect(navigation.HOME_ROUTE)

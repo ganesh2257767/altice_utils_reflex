@@ -8,6 +8,7 @@ class UserModel(rx.Model, table=True):
     last_name: str
     email: str = Field(unique=True)
     password: str
+    role: str = Field(nullable=True)
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc)
     )

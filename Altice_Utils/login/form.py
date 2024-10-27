@@ -34,7 +34,8 @@ def login_form() -> rx.Component:
                         type="email",
                         size="3",
                         width="100%",
-                        name="email"
+                        name="email",
+                        required=True
                     ),
                     spacing="2",
                     width="100%",
@@ -60,7 +61,8 @@ def login_form() -> rx.Component:
                         type="password",
                         size="3",
                         width="100%",
-                        name="password"
+                        name="password",
+                        required=True
                     ),
                     spacing="2",
                     width="100%",

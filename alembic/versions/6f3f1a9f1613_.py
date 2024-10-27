@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f9cd8014e2e4
+Revision ID: 6f3f1a9f1613
 Revises: 
-Create Date: 2024-10-25 18:47:14.369615
+Create Date: 2024-10-26 05:58:01.383228
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 import sqlmodel
 
 # revision identifiers, used by Alembic.
-revision: str = 'f9cd8014e2e4'
+revision: str = '6f3f1a9f1613'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -27,14 +27,15 @@ def upgrade() -> None:
     sa.Column('email', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('password', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     op.create_table('contact',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('created_by', sa.Integer(), nullable=True),
+    sa.Column('created_by', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('message', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.ForeignKeyConstraint(['created_by'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['created_by'], ['users.email'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
