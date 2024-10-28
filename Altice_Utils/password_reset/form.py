@@ -52,7 +52,7 @@ def password_reset_form() -> rx.Component:
                         width="100%",
                     ),
                     rx.input(
-                        rx.input.slot(rx.icon("user")),
+                        rx.input.slot(rx.icon("lock-open")),
                         placeholder="Current Password",
                         type="password",
                         size="3",
@@ -87,7 +87,7 @@ def password_reset_form() -> rx.Component:
                         ),
                     ),
                     rx.input(
-                        rx.input.slot(rx.icon("user")),
+                        rx.input.slot(rx.icon("lock-keyhole")),
                         placeholder="New Password",
                         type="password",
                         size="3",
@@ -123,7 +123,7 @@ def password_reset_form() -> rx.Component:
                         width="100%",
                     ),
                     rx.input(
-                        rx.input.slot(rx.icon("user")),
+                        rx.input.slot(rx.icon("lock-keyhole")),
                         placeholder="Confirm New Password",
                         type="password",
                         size="3",

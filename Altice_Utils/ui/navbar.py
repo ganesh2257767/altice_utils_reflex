@@ -30,6 +30,7 @@ def navbar() -> rx.Component:
                         navbar_link("FQDN", navigation.FQDN_ROUTE),
                         navbar_link("Check Feasibility", "/#"),
                         navbar_link("Netwin Helper", "/#"),
+                        navbar_link("Unlock Account", navigation.UNLOCK_ACCOUNT_ROUTE),
                         navbar_link("Contact", navigation.CONTACT_ROUTE),
                         spacing="5",
                         justify="start",
