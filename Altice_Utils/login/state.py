@@ -23,11 +23,11 @@ class LoginState(rx.State):
 
     async def handle_form_submit(self, form_data):
         self.form_data = form_data
-        print(form_data)
         with rx.session() as session:
             statement = select(UserModel).where(UserModel.email == self.form_data['email'])
             try:
                 user = session.exec(statement).one()[0]
+                print("Login user: ", user)
             except NoResultFound as e:
                 yield rx.toast.error("Invalid credentials.", position="bottom-center")
                 return

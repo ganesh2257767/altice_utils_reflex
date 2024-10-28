@@ -101,7 +101,8 @@ def contact_form() -> rx.Component:
                         width="100%",
                         height="100%",
                         resize="vertical",
-                        name="message"
+                        name="message",
+                        required=True
                     ),
                     spacing="2",
                     width="100%",

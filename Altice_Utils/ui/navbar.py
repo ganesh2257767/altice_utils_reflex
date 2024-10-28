@@ -1,7 +1,7 @@
 import reflex as rx
 
-from ..login import LoginState
 from .. import navigation
+from ..login import LoginState
 
 
 def navbar_link(text: str, url: str) -> rx.Component:
@@ -39,18 +39,37 @@ def navbar() -> rx.Component:
                 rx.cond(
                     LoginState.is_authenticated,
                     rx.hstack(
-                        rx.link(
-                            rx.button(
-                                "Log Out",
-                                size="3",
-                                variant="outline",
-                                color="red",
-                                on_click=LoginState.logout
+                        rx.avatar(
+                            fallback=f"{LoginState.current_user.first_name[0]}{LoginState.current_user.last_name[0]}",
+                            radius="full",
+                            size="4"
+                        ),
+                        rx.menu.root(
+                            rx.menu.trigger(
+                                rx.icon("chevron-down", size=30)
                             ),
-                            href=navigation.LOGIN_ROUTE,
-                            spacing="4",
-                            justify="end",
-                        )
+                            rx.menu.content(
+                                rx.menu.item(
+                                    "Reset Password",
+                                    on_click=rx.redirect(navigation.PASSWORD_RESET_ROUTE),
+                                ),
+                                rx.cond(
+                                    LoginState.current_user.role == "ADMIN",
+                                    rx.menu.item(
+                                        "Check Messages",
+                                        on_click=rx.redirect(navigation.CONTACT_ENTRIES_ROUTE),
+                                    ),
+                                ),
+                                rx.menu.separator(),
+                                rx.menu.item(
+                                    "Logout",
+                                    color="red",
+                                    on_click=LoginState.logout
+                                ),
+                            ),
+                        ),
+                        justify="end",
+                        align_items="center",
                     ),
                     rx.hstack(
                         rx.link(
