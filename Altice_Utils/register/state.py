@@ -2,8 +2,6 @@ import reflex as rx
 import bcrypt
 from . import UserModel
 from sqlalchemy.exc import IntegrityError
-from .. import navigation
-import asyncio
 
 class RegisterState(rx.State):
     form_data: dict
@@ -23,7 +21,6 @@ class RegisterState(rx.State):
     async def handle_form_submit(self, form_data):
         self.form_data = form_data
         self.form_data.pop('confirm_password')
-        print(self.form_data)
         salt = bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(self.password.encode("utf-8"), salt)
         self.form_data['password'] = hashed_password

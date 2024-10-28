@@ -32,7 +32,7 @@ def fqdn_table():
                         rx.table.row_header_cell(FQDNState.fqdn_name),
                         rx.table.cell(FQDNState.mac),
                         rx.table.cell(FQDNState.dns),
-                        rx.table.cell(FQDNState.time),
+                        rx.table.cell(FQDNState.time_str),
                     )
                 ),
                 width="100%",
@@ -51,4 +51,5 @@ def fqdn_table():
         max_width="90%",
         size="4",
         width="100%",
+        on_mount=FQDNState.reset_results
     )

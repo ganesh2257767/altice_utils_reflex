@@ -1,5 +1,8 @@
 import reflex as rx
+from docutils.parsers.rst.directives.tables import align
+
 from . import FQDNState
+
 
 def fqdn_form() -> rx.Component:
     return rx.card(
@@ -34,7 +37,8 @@ def fqdn_form() -> rx.Component:
                         name="mac",
                         required=True,
                         max_length=12,
-                        min_length=12
+                        min_length=12,
+                        value="12345789789"
                     ),
                     spacing="2",
                     width="100%",
@@ -44,6 +48,16 @@ def fqdn_form() -> rx.Component:
                 width="100%",
             ),
             on_submit=FQDNState.handle_form_submit
+        ),
+        rx.vstack(
+            rx.cond(
+                FQDNState.result_ready,
+                rx.text(FQDNState.status),
+                rx.text(FQDNState.time_str)
+            ),
+            align="center",
+            width="100%",
+            padding_top="1em"
         ),
         max_width="28em",
         size="4",
