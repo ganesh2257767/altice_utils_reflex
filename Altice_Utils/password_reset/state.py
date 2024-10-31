@@ -6,6 +6,7 @@ class PasswordResetState(rx.State):
     old_password: str
     new_password: str
     confirm_new_password: str
+    loading: bool = False
 
     @rx.var
     def passwords_match(self):
@@ -19,8 +20,8 @@ class PasswordResetState(rx.State):
 
 
     async def handle_form_submit(self, form_data):
-        print(form_data)
-
+        self.loading = True
+        yield
         with rx.session() as session:
             try:
                 statement = UserModel.select().where(UserModel.email==form_data["email"])
@@ -44,4 +45,5 @@ class PasswordResetState(rx.State):
                     position="bottom-center"
                 )
             finally:
+                self.loading = False
                 self.reset()

@@ -28,11 +28,12 @@ def unlock_account_form() -> rx.Component:
 
                     ),
                     rx.select(
-                        items=["QA INT", "QA 2"],
+                        items=UnlockAccountState.urls.keys(),
                         size="3",
                         width="100%",
                         name="env",
-                        required=True
+                        required=True,
+                        on_change=UnlockAccountState.set_env_url
                     ),
                     spacing="2",
                     width="100%",
@@ -52,7 +53,8 @@ def unlock_account_form() -> rx.Component:
                         name="corp",
                         min_length=4,
                         max_length=5,
-                        required=True
+                        required=True,
+                        on_change=UnlockAccountState.set_corp
                     ),
                     spacing="2",
                     width="100%",
@@ -71,12 +73,13 @@ def unlock_account_form() -> rx.Component:
                         width="100%",
                         name="house",
                         max_length=6,
-                        required=True
+                        required=True,
+                        on_change=UnlockAccountState.set_house
                     ),
                     spacing="2",
                     width="100%",
                 ),
-                rx.button("Unlock", size="3", width="100%"),
+                rx.button("Unlock", size="3", width="100%", loading=UnlockAccountState.loading),
                 spacing="6",
                 width="100%",
             ),

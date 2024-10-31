@@ -107,7 +107,7 @@ def contact_form() -> rx.Component:
                     spacing="2",
                     width="100%",
                 ),
-                rx.button("Submit", size="3", width="100%"),
+                rx.button("Submit", size="3", width="100%", loading=ContactState.loading_submit),
                 spacing="6",
                 width="100%",
             ),

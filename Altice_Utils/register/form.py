@@ -1,7 +1,7 @@
 import reflex as rx
 
 from . import RegisterState
-
+from .. import navigation
 
 def register_form() -> rx.Component:
     return rx.card(
@@ -183,11 +183,12 @@ def register_form() -> rx.Component:
                     size="3",
                     width="100%",
                     type="submit",
-                    disabled=~RegisterState.passwords_match | ~RegisterState.valid_email
+                    disabled=~RegisterState.passwords_match | ~RegisterState.valid_email,
+                    loading=RegisterState.loading
                 ),
                 rx.center(
                     rx.text("Already registered?", size="3"),
-                    rx.link("Sign in", href="#", size="3"),
+                    rx.link("Sign in", href=navigation.LOGIN_ROUTE, size="3"),
                     opacity="0.8",
                     spacing="2",
                     direction="row",
@@ -199,7 +200,6 @@ def register_form() -> rx.Component:
             reset_on_submit=True,
             on_submit=RegisterState.handle_form_submit
         ),
-
         max_width="30em",
         size="4",
         width="100%",

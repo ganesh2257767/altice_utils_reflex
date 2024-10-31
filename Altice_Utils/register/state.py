@@ -8,6 +8,7 @@ class RegisterState(rx.State):
     email: str
     password: str
     confirm_password: str
+    loading: bool = False
 
     @rx.var
     def passwords_match(self):
@@ -19,6 +20,8 @@ class RegisterState(rx.State):
 
 
     async def handle_form_submit(self, form_data):
+        self.loading = True
+        yield
         self.form_data = form_data
         self.form_data.pop('confirm_password')
         salt = bcrypt.gensalt()
@@ -40,4 +43,5 @@ class RegisterState(rx.State):
                     position="bottom-center"
                 )
             finally:
+                self.loading = False
                 self.reset()

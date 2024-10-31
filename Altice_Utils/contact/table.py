@@ -26,7 +26,7 @@ def render_function(user_message: UserMessage):
                     ),
                     rx.tooltip(
                         rx.button(rx.icon("check", size=20), size="1", color_scheme="green",
-                                  on_click=lambda: ContactState.complete_entry(user_message.id)),
+                                  on_click=lambda: ContactState.complete_entry(user_message.id), loading=ContactState.loading_complete),
                         content="Mark this action item as complete"
                     )
                 ),
@@ -34,7 +34,7 @@ def render_function(user_message: UserMessage):
                     user_message.completed,
                     rx.tooltip(
                         rx.button(rx.icon("x", size=20), size="1", color_scheme="orange",
-                                  on_click=lambda: ContactState.undo_complete_entry(user_message.id)),
+                                  on_click=lambda: ContactState.undo_complete_entry(user_message.id), loading=ContactState.loading_incomplete),
                         content="Undo this action item and mark as incomplete"
                     ),
                     rx.tooltip(
@@ -44,7 +44,7 @@ def render_function(user_message: UserMessage):
                 ),
                 rx.dialog.root(
                     rx.dialog.trigger(
-                            rx.button(rx.icon("trash-2", size=20), size="1", color_scheme="red"),
+                        rx.button(rx.icon("trash-2", size=20), size="1", color_scheme="red", loading=ContactState.loading_delete),
                     ),
                     rx.dialog.content(
                         rx.dialog.title("Are you sure?"),
@@ -72,11 +72,11 @@ def render_function(user_message: UserMessage):
 def entries_table():
     return rx.card(
         rx.cond(
-            ContactState.all_messages,
+            ContactState.loading_messages,
             rx.vstack(
                 rx.center(
                     rx.heading(
-                        "Action Items",
+                        "Loading messages",
                         size="6",
                         as_="h2",
                         text_align="center",
@@ -86,39 +86,65 @@ def entries_table():
                     spacing="5",
                     width="100%",
                 ),
-                rx.table.root(
-                    rx.table.header(
-                        rx.table.row(
-                            rx.table.column_header_cell("Name"),
-                            rx.table.column_header_cell("Email"),
-                            rx.table.column_header_cell("Message"),
-                            rx.table.column_header_cell("Created At"),
-                            rx.table.column_header_cell("Completed?"),
-                            rx.table.column_header_cell("Actions"),
-                        ),
-                    ),
-                    rx.table.body(
-                        rx.foreach(ContactState.all_messages, render_function)
-                    ),
-                    width="100%",
-                ),
-                spacing="6",
-                width="100%",
-            ),
-            rx.center(
                 rx.center(
-                    rx.heading(
-                        "No action items to display",
-                        size="6",
-                        as_="h2",
-                        text_align="center",
-                        width="100%",
+                    rx.spinner(
+                        size="3",
+                        loading=ContactState.loading_messages
                     ),
                     direction="column",
                     spacing="5",
                     width="100%",
                 )
             ),
+            rx.cond(
+                ContactState.all_messages,
+                rx.vstack(
+                    rx.center(
+                        rx.heading(
+                            "Action Items",
+                            size="6",
+                            as_="h2",
+                            text_align="center",
+                            width="100%",
+                        ),
+                        direction="column",
+                        spacing="5",
+                        width="100%",
+                    ),
+                    rx.table.root(
+                        rx.table.header(
+                            rx.table.row(
+                                rx.table.column_header_cell("Name"),
+                                rx.table.column_header_cell("Email"),
+                                rx.table.column_header_cell("Message"),
+                                rx.table.column_header_cell("Created At"),
+                                rx.table.column_header_cell("Completed?"),
+                                rx.table.column_header_cell("Actions"),
+                            ),
+                        ),
+                        rx.table.body(
+                            rx.foreach(ContactState.all_messages, render_function)
+                        ),
+                        width="100%",
+                    ),
+                    spacing="6",
+                    width="100%",
+                ),
+                rx.center(
+                    rx.center(
+                        rx.heading(
+                            "No action items to display",
+                            size="6",
+                            as_="h2",
+                            text_align="center",
+                            width="100%",
+                        ),
+                        direction="column",
+                        spacing="5",
+                        width="100%",
+                    )
+                ),
+            )
         ),
         max_width="90%",
         size="4",

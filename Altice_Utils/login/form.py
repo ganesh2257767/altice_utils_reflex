@@ -1,7 +1,7 @@
 import reflex as rx
 
 from . import LoginState
-
+from .. import navigation
 
 def login_form() -> rx.Component:
     return rx.card(
@@ -67,10 +67,15 @@ def login_form() -> rx.Component:
                     spacing="2",
                     width="100%",
                 ),
-                rx.button("Sign in", size="3", width="100%"),
+                rx.button(
+                    "Sign in",
+                    size="3",
+                    width="100%",
+                    loading=LoginState.loading
+                          ),
                 rx.center(
                     rx.text("New here?", size="3"),
-                    rx.link("Register", href="#", size="3"),
+                    rx.link("Register", href=navigation.REGISTER_ROUTE, size="3"),
                     opacity="0.8",
                     spacing="2",
                     direction="row",
