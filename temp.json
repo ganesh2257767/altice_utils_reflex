@@ -1,0 +1,13 @@
+{
+    "sessionId": "Sat Nov 02 17:49:52 2024",
+    "sourceApp": "IDA",
+    "success": true,
+    "errorCode": "200",
+    "errorMessage": "OK",
+    "availability": "AVAILABLE",
+    "ftthPdo": "1769487",
+    "ftthPdoDescription": "{\n  \"id\" : \"1769487\",\n  \"type\" : \"ME.PDO\",\n  \"name\" : \"P10\",\n  \"location\" : {\n    \"id\" : null,\n    \"type\" : \"LOC.PHYSICAL.IP.MAIN.POLE.JOINT\",\n    \"labelType\" : \"Joint Pole\",\n    \"name\" : \"T-4\",\n    \"description\" : null,\n    \"parentLocation\" : \"[USA] United States , [NY] NEW YORK , [36059] NASSAU , [3605956000] OYSTER BAY\",\n    \"address\" : {\n      \"streetNr\" : \"38\",\n      \"streetName\" : \"ASH LN\",\n      \"city\" : \"HICKSVILLE\",\n      \"stateOrProvince\" : \"NY\",\n      \"postcode\" : \"11801\",\n      \"streetNrSuffix\" : null\n    }\n  },\n  \"unknownODN\" : \"NO\",\n  \"cellName\" : \"NY31001\",\n  \"feedingHeadEnds\" : [ \"NY31\" ]\n}",
+    "technology": "GPON",
+    "maxUpSpeed": "1244",
+    "maxDownSpeed": "2488"
+}

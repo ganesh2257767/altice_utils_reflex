@@ -28,7 +28,7 @@ def navbar() -> rx.Component:
                     LoginState.is_authenticated,
                     rx.hstack(
                         navbar_link("FQDN", navigation.FQDN_ROUTE),
-                        navbar_link("Check Feasibility", "/#"),
+                        navbar_link("Check Feasibility", navigation.CHECK_FEASIBILITY_ROUTE),
                         navbar_link("Netwin Helper", "/#"),
                         navbar_link("Unlock Account", navigation.UNLOCK_ACCOUNT_ROUTE),
                         navbar_link("Contact", navigation.CONTACT_ROUTE),

@@ -1,0 +1,186 @@
+{
+    "QA INT": {
+        "addresses": {
+            "OPT": {
+                "GPON": [
+                    "30 ASH LN HICKSVILLE NY 11801",
+                    "34 ASH LN HICKSVILLE NY 11801",
+                    "36 ASH LN HICKSVILLE NY 11801",
+                    "38 ASH LN HICKSVILLE NY 11801",
+                    "40 ASH LN HICKSVILLE NY 11801",
+                    "48 ASH LN HICKSVILLE NY 11801",
+                    "315 ACRE LN HICKSVILLE NY 11801",
+                    "336 ACRE LN HICKSVILLE NY 11801",
+                    "27 ATLAS LN HICKSVILLE NY 11801",
+                    "29 ATLAS LN HICKSVILLE NY 11801",
+                    "33 ATLAS LN HICKSVILLE NY 11801",
+                    "35 ATLAS LN HICKSVILLE NY 11801",
+                    "38 ATLAS LN HICKSVILLE NY 11801",
+                    "39 ATLAS LN HICKSVILLE NY 11801",
+                    "41 ATLAS LN HICKSVILLE NY 11801",
+                    "15 BEACON LN HICKSVILLE NY 11801"
+                ],
+                "XGSPON": [
+                    "=============PDO1=============",
+                    "61 SLEEPY LN HICKSVILLE NY 11801",
+                    "65 SLEEPY LN HICKSVILLE NY 11801",
+                    "53 SLEEPY LN HICKSVILLE NY 11801",
+                    "67 SLEEPY LN HICKSVILLE NY 11801",
+                    "=============PDO2=============",
+                    "50 SLEEPY LN HICKSVILLE NY 11801",
+                    "54 SLEEPY LN HICKSVILLE NY 11801",
+                    "44 SLEEPY LN HICKSVILLE NY 11801",
+                    "58 SLEEPY LN HICKSVILLE NY 11801",
+                    "=============PDO3=============",
+                    "7 SLEEPY LN HICKSVILLE NY 11801",
+                    "5 SLEEPY LN HICKSVILLE NY 11801",
+                    "9 SLEEPY LN HICKSVILLE NY 11801",
+                    "2 SLEEPY LN HICKSVILLE NY 11801",
+                    "=============PDO4=============",
+                    "35 SLEEPY LN HICKSVILLE NY 11801",
+                    "33 SLEEPY LN HICKSVILLE NY 11801",
+                    "29 SLEEPY LN HICKSVILLE NY 11801",
+                    "39 SLEEPY LN HICKSVILLE NY 11801"
+                ],
+                "CHT": [
+                    "===========C01_EAST===========",
+                    "17 DANTE AVE HICKSVILLE NY 11801",
+                    "11 DANTE AVE HICKSVILLE NY 11801",
+                    "19 DANTE AVE HICKSVILLE NY 11801",
+                    "16 DANTE AVE HICKSVILLE NY 11801",
+                    "===========C02_EAST===========",
+                    "51 DANTE AVE HICKSVILLE NY 11801",
+                    "49 DANTE AVE HICKSVILLE NY 11801",
+                    "47 DANTE AVE HICKSVILLE NY 11801",
+                    "31 DANTE AVE HICKSVILLE NY 11801",
+                    "===========C03_EAST===========",
+                    "87 DANTE AVE HICKSVILLE NY 11801",
+                    "85 DANTE AVE HICKSVILLE NY 11801",
+                    "89 DANTE AVE HICKSVILLE NY 11801",
+                    "52 DANTE AVE HICKSVILLE NY 11801"
+                ],
+                "WITH DELAY": [
+                    "3 WILLOW AVE HICKSVILLE NY 11801",
+                    "6 BISHOP LN HICKSVILLE NY 11801",
+                    "11 ATLAS LN HICKSVILLE NY 11801",
+                    "14 ASH LN HICKSVILLE NY 11801",
+                    "326 ACRE LN HICKSVILLE NY 11801"
+                ],
+                "MAUI": [
+                    "149 SPINDLE RD HICKSVILLE NY 11801"
+                ]
+            },
+            "SDL": {
+                "XGSPON": [
+                    "3103 BAYLOR ST LUBBOCK TX 79415",
+                    "3105 BAYLOR ST LUBBOCK TX 79415",
+                    "3107 BAYLOR ST LUBBOCK TX 79415",
+                    "3109 BAYLOR ST LUBBOCK TX 79415"
+                ],
+                "RFOG": [
+                    "3309 AUBURN ST LUBBOCK TX 79415",
+                    "3311 AUBURN ST LUBBOCK TX 79415",
+                    "3313 AUBURN ST LUBBOCK TX 79415"
+                ],
+                "CHT": [
+                    "===========C01_WEST===========",
+                    "3313 DUKE ST LUBBOCK TX 79415",
+                    "3311 DUKE ST LUBBOCK TX 79415",
+                    "3309 DUKE ST LUBBOCK TX 79415",
+                    "3307 DUKE ST LUBBOCK TX 79415",
+                    "===========C02_WEST===========",
+                    "3221 DUKE ST LUBBOCK TX 79415",
+                    "3219 DUKE ST LUBBOCK TX 79415",
+                    "3217 DUKE ST LUBBOCK TX 79415",
+                    "3301 DUKE ST LUBBOCK TX 79415",
+                    "===========C03_WEST===========",
+                    "3207 DUKE ST LUBBOCK TX 79415",
+                    "3205 DUKE ST LUBBOCK TX 79415",
+                    "3209 DUKE ST LUBBOCK TX 79415",
+                    "3203 DUKE ST LUBBOCK TX 79415"
+                ]
+            }
+        },
+        "get_token": "http://microservices-int.lab.cscqa.com/GateKeeper_V1/api/getToken",
+        "check_feasibility": "http://microservices-int.lab.cscqa.com/checkFTTHFeasibility_V2/api/m1"
+    },
+    "QA 2": {
+        "addresses": {
+            "OPT": {
+                "GPON": [
+                    "186 JACKSON AVE MINEOLA NY 11501",
+                    "179 GRANT AVE MINEOLA NY 11501",
+                    "177 JEFFERSON AVE MINEOLA NY 11501",
+                    "231 WASHINGTON AVE MINEOLA NY 11501"
+                ],
+                "XGSPON": [
+                    "=============PDO1=============",
+                    "305 WALTER AVE MINEOLA NY 11501",
+                    "306 WALTER AVE MINEOLA NY 11501",
+                    "309 WALTER AVE MINEOLA NY 11501",
+                    "=============PDO2=============",
+                    "299 WELLINGTON RD MINEOLA NY 11501",
+                    "305 WELLINGTON RD MINEOLA NY 11501",
+                    "315 WELLINGTON RD MINEOLA NY 11501",
+                    "=============PDO3=============",
+                    "341 BAUER PL MINEOLA NY 11501",
+                    "343 BAUER PL MINEOLA NY 11501",
+                    "345 BAUER PL MINEOLA NY 11501",
+                    "=============PDO4=============",
+                    "321 COOLIDGE AVE MINEOLA NY 11501",
+                    "325 COOLIDGE AVE MINEOLA NY 11501",
+                    "326 COOLIDGE AVE MINEOLA NY 11501"
+                ],
+                "CISCO BNG": [
+                    "130 WALKER RD MINEOLA NY 11501",
+                    "134 WALKER RD MINEOLA NY 11501",
+                    "135 WALKER RD MINEOLA NY 11501",
+                    "143 WALKER RD MINEOLA NY 11501",
+                    "146 WALKER RD MINEOLA NY 11501"
+                ],
+                "VIRTUAL": [
+                    "101 MILLINGTON PL MINEOLA NY 11501"
+                ]
+            },
+            "SDL": {
+                "XGSPON": [
+                    "=============PDO1=============",
+                    "531 ROANE ST CHARLESTON WV 25302",
+                    "525 ROANE ST CHARLESTON WV 25302",
+                    "523 ROANE ST CHARLESTON WV 25302",
+                    "=============PDO2=============",
+                    "521 WYOMING ST CHARLESTON WV 25302",
+                    "522 WYOMING ST CHARLESTON WV 25302",
+                    "523 WYOMING ST CHARLESTON WV 25302",
+                    "524 WYOMING ST CHARLESTON WV 25302",
+                    "=============PDO3=============",
+                    "519 WYOMING ST CHARLESTON WV 25302",
+                    "518 WYOMING ST CHARLESTON WV 25302",
+                    "517 WYOMING ST CHARLESTON WV 25302",
+                    "=============PDO4=============",
+                    "536 WYOMING ST CHARLESTON WV 25302",
+                    "537 WYOMING ST CHARLESTON WV 25302",
+                    "534 WYOMING ST CHARLESTON WV 25302",
+                    "=============PDO5=============",
+                    "624 RANDOLPH ST CHARLESTON WV 25302",
+                    "625 RANDOLPH ST CHARLESTON WV 25302",
+                    "623 RANDOLPH ST CHARLESTON WV 25302"
+                ],
+                "RFOG": [
+                    "733 CENTRAL AVE CHARLESTON WV 25302",
+                    "735 CENTRAL AVE CHARLESTON WV 25302",
+                    "736 CENTRAL AVE CHARLESTON WV 25302",
+                    "737 CENTRAL AVE CHARLESTON WV 25302",
+                    "738 CENTRAL AVE CHARLESTON WV 25302",
+                    "739 CENTRAL AVE CHARLESTON WV 25302",
+                    "306 BEUHRING AVE CHARLESTON WV 25302",
+                    "308 BEUHRING AVE CHARLESTON WV 25302",
+                    "305 BEUHRING AVE CHARLESTON WV 25302",
+                    "303 BEUHRING AVE CHARLESTON WV 25302"
+                ]
+            }
+        },
+        "get_token": "http://microservices-q2.lab.cscqa.com/GateKeeper_V1/api/getToken",
+        "check_feasibility": "http://microservices-q2.lab.cscqa.com/checkFTTHFeasibility_V2/api/m1"
+    }
+}

@@ -1,10 +1,11 @@
 import reflex as rx
+
 from .navbar import navbar
 
 
 def base_page(*children) -> rx.Component:
     return rx.fragment(
-    navbar(),
+        navbar(),
         rx.box(
             padding="20px"
         ),
@@ -16,4 +17,5 @@ def base_page(*children) -> rx.Component:
             min_height="50vh"
         ),
         rx.color_mode.button(position="bottom-right"),
+        rx.theme_panel(default_open=False)
     )

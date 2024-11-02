@@ -32,7 +32,6 @@ class LoginState(rx.State):
             except NoResultFound as e:
                 yield rx.toast.error("Invalid credentials.", position="bottom-center")
                 self.loading = False
-                yield
                 return
             else:
                 if not bcrypt.checkpw(form_data['password'].encode("utf-8"), user.password.encode("utf-8")):
