@@ -44,6 +44,7 @@ pydantic_core==2.23.4
 Pygments==2.18.0
 pyproject_hooks==1.2.0
 python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
 python-engineio==4.10.1
 python-multipart==0.0.12
 python-socketio==5.11.4
@@ -77,7 +78,5 @@ websockets==13.1
 wheel==0.44.0
 wrapt==1.16.0
 wsproto==1.2.0
+xmltodict==0.14.2
 zipp==3.20.2
-
-python-dotenv~=1.0.1
-xmltodict~=0.14.2
