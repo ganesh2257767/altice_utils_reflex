@@ -6,6 +6,10 @@ import requests
 import xmltodict
 from requests.auth import HTTPBasicAuth
 
+from ..home import UsageModel
+from ..login import LoginState
+
+
 class UnlockAccountState(rx.State):
     url: str
     corp: str
@@ -100,6 +104,7 @@ class UnlockAccountState(rx.State):
     async def handle_form_submit(self, form_data):
         self.loading = True
         self.status = "Querying the lock status..."
+        await self.add_usage_entry()
         yield
         try:
             query_lock_response = self.query_lock(self.url, self.corp, self.house)
@@ -128,6 +133,17 @@ class UnlockAccountState(rx.State):
                 self.loading = False
         else:
             return
+
+    async def add_usage_entry(self):
+        login_state = await self.get_state(LoginState)
+        with rx.session() as session:
+            used_by = login_state.current_user.email
+            usage = UsageModel(
+                used_by=used_by,
+                service_used="Unlock Account"
+            )
+            session.add(usage)
+            session.commit()
 
 
     def set_env_url(self, env):

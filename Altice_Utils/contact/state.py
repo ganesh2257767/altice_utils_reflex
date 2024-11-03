@@ -3,8 +3,7 @@ from datetime import datetime
 import reflex as rx
 from sqlmodel import select
 
-from . import ContactModel
-from ..login import LoginState
+from . import MessageModel
 from ..register import UserModel
 
 
@@ -32,7 +31,7 @@ class ContactState(rx.State):
 
         if not self.all_messages:
             with rx.session() as session:
-                statement = select(UserModel, ContactModel).where(UserModel.email == ContactModel.created_by)
+                statement = select(UserModel, MessageModel).where(UserModel.email == MessageModel.created_by)
                 list_user_messages = session.exec(statement).all()
 
             for user, message in list_user_messages:
@@ -52,8 +51,8 @@ class ContactState(rx.State):
         self.loading_complete = True
         yield
         with rx.session() as session:
-            statement = select(ContactModel).where(ContactModel.id == id_)
-            message: ContactModel = session.exec(statement).one()
+            statement = select(MessageModel).where(MessageModel.id == id_)
+            message: MessageModel = session.exec(statement).one()
             for message_instance in self.all_messages:
                 if message_instance.id == id_:
                     message_instance.completed = True
@@ -67,8 +66,8 @@ class ContactState(rx.State):
         self.loading_incomplete = True
         yield
         with rx.session() as session:
-            statement = select(ContactModel).where(ContactModel.id == id_)
-            message: ContactModel = session.exec(statement).one()
+            statement = select(MessageModel).where(MessageModel.id == id_)
+            message: MessageModel = session.exec(statement).one()
             for message_instance in self.all_messages:
                 if message_instance.id == id_:
                     message_instance.completed = False
@@ -82,8 +81,8 @@ class ContactState(rx.State):
         self.loading_delete = True
         yield
         with rx.session() as session:
-            statement = select(ContactModel).where(ContactModel.id == id_)
-            message: ContactModel = session.exec(statement).one()
+            statement = select(MessageModel).where(MessageModel.id == id_)
+            message: MessageModel = session.exec(statement).one()
             for message_instance in self.all_messages:
                 if message_instance.id == id_:
                     self.all_messages.remove(message_instance)
@@ -97,7 +96,7 @@ class ContactState(rx.State):
         yield
         self.form_data = form_data
         with rx.session() as session:
-            entry = ContactModel(
+            entry = MessageModel(
                 **self.form_data
             )
             session.add(entry)

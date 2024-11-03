@@ -3,7 +3,9 @@ import threading
 import time
 import random
 import reflex as rx
-from collections.abc import Iterable
+from ..home import UsageModel
+from ..login import LoginState
+
 
 class FQDNState(rx.State):
     mac: str
@@ -38,12 +40,22 @@ class FQDNState(rx.State):
             m, s = divmod(self.time, 60)
             self.time_str = f"{m:0>2}:{s:0>2}"
             yield
+        await self.add_usage_entry()
         self.status = "Done"
         t.join()
         yield
 
-        # Start performing checks
-        # Perform FQDN checks here (Long function)
+    async def add_usage_entry(self):
+        login_state = await self.get_state(LoginState)
+        with rx.session() as session:
+            used_by = login_state.current_user.email
+            usage = UsageModel(
+                used_by=used_by,
+                service_used="FQDN"
+            )
+            session.add(usage)
+            session.commit()
+
 
     def reset_results(self):
         self.reset()

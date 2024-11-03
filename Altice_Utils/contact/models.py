@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 from sqlmodel import Field
 
 
-class ContactModel(rx.Model, table=True):
-    __tablename__ = "contact"
+class MessageModel(rx.Model, table=True):
+    __tablename__ = "messages"
     created_by: str = Field(foreign_key="users.email", nullable=False)
     message: str
     created_at: datetime = Field(

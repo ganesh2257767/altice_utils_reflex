@@ -7,6 +7,9 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 
+from ..home import UsageModel
+from ..login import LoginState
+
 load_dotenv()
 
 
@@ -53,6 +56,7 @@ class CheckFeasibilityState(rx.State):
         self.result.clear()
         self.result_ready = False
         self.loading = True
+        await self.add_usage_entry("On a Specific Address")
         yield
         check_feasibility_response = await self.check_feasibility()
         print("Check feasibility response: ", check_feasibility_response)
@@ -69,6 +73,7 @@ class CheckFeasibilityState(rx.State):
         self.result.clear()
         self.result_ready = False
         self.loading = True
+        await self.add_usage_entry("Next Available Address")
         yield
 
         next_available_response = await self.next_available()
@@ -80,8 +85,18 @@ class CheckFeasibilityState(rx.State):
         else:
             yield rx.toast.error(next_available_response.get("errorMessage"), position="bottom-center")
 
-        self.result_ready = True
         self.loading = False
+
+    async def add_usage_entry(self, variant: str):
+        login_state = await self.get_state(LoginState)
+        with rx.session() as session:
+            used_by = login_state.current_user.email
+            usage = UsageModel(
+                used_by=used_by,
+                service_used=f"Check Feasibility: {variant}"
+            )
+            session.add(usage)
+            session.commit()
 
 
     def format_address(self) -> tuple[str, str, str, str, str] | None:

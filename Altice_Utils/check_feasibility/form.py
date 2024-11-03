@@ -173,23 +173,6 @@ def check_feasibility_form() -> rx.Component:
                             ),
                             width="100%"
                         ),
-                        # rx.vstack(
-                        #     rx.text(
-                        #         "Address",
-                        #         size="3",
-                        #         weight="medium",
-                        #         text_align="left",
-                        #         width="100%",
-                        #     ),
-                        #     rx.select(
-                        #         value=CheckFeasibilityState.address,
-                        #         items=CheckFeasibilityState.addresses_dropdown,
-                        #         width="100%",
-                        #         on_change=CheckFeasibilityState.set_address
-                        #     ),
-                        #     spacing="2",
-                        #     width="100%",
-                        # ),
                         rx.button("Check", size="3", width="100%", loading=CheckFeasibilityState.loading),
                         spacing="6",
                         width="100%",
